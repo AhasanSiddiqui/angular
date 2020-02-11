@@ -1,5 +1,7 @@
+
+import { PostService } from './services/post.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -8,6 +10,7 @@ import { CourseComponent } from './course/course.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { PostComponent } from './post/post.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AppErrorHandler } from './common/app-error-handler';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpModule, 
     HttpClientModule
   ],
-  providers: [],
+  providers: [PostService,
+    {provide : ErrorHandler, useClass: AppErrorHandler}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
